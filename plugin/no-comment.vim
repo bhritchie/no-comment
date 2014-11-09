@@ -11,4 +11,4 @@ function! s:comment_line()
   echom "You called comment_line"
 endfunction
 
-command! :NoComment! call s:comment_line()
+command! NoComment! call s:comment_line()
