@@ -7,4 +7,8 @@ if exists("g:loaded_no_comment") || &cp || v:version < 700
 endif
 let g:loaded_no_comment = 1
 
-echom "No Comment"
+function! s:comment_line()
+  echom "You called comment_line"
+endfunction
+
+call s:comment_line()
