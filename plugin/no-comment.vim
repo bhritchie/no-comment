@@ -15,10 +15,14 @@ function! s:comment_line()
   if empty(&filetype)
     echo "No Comment: filetype is not defined."
   elseif !has_key(g:no_comment_strings, &filetype)
-    echo "No Comment: no comment string is defined for filtype " . &filetype
+    echo "No Comment: no comment string is defined for filetype " . &filetype
   else
-    echo "No Comment has been invoked for filtype " . &filetype
-    execute "normal! I" . g:no_comment_strings[&filetype] .  " \<esc>"
+    if getline(line(".")) =~? '\v(\s*)?^(\s*)?' . g:no_comment_strings[&filetype] . '(\s*)?'
+      " remove the comment string, leaving indentation in place
+      execute "normal! mx^:" . 's/\v' . g:no_comment_strings[&filetype] . '(\s*)?//' . "\<cr>`xhh"
+    else
+      execute "normal! mxI" . g:no_comment_strings[&filetype] .  " \<esc>`xll"
+    endif
   endif
 endfunction
 

@@ -8,7 +8,7 @@ A single new command is provided by this plugin:
 
     :NoComment
 
-This command comments out the current line by adding a comment string to the beginning of it. It is assumed that the user will want to create a mapping for this. For example:
+This command toggles a comment string at the start of the current line. The user will likely want to create a mapping for it. For example:
 
     nnoremap <leader>c :NoComment<cr>
 
@@ -34,7 +34,7 @@ A web developer might start with something like this in his .vimrc:
 
 ## Plans
 
-At a minimum, :NoComment will eventually act a toggle, and will work on multiple lines in visual mode. A help file will be added.
+At a minimum, :NoComment will allow for commenting multiple strings in visual mode, and will support languages requiring both an opening and closing string. A help file will be added.
 
 ## Installation
 
