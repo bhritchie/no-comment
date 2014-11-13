@@ -8,13 +8,17 @@ A single new command is provided by this plugin:
 
     :NoComment
 
-This command toggles a comment string at the start of the current line. The user will likely want to create a mapping for it. For example:
+This command is a toggle for commenting out the current line. The user will likely want to create a mapping for it. For example:
 
     nnoremap <leader>c :NoComment<cr>
 
 No Comment does not itself know any comment strings. The user must define define a `g:no_comment_string` dictionary, mapping desired filetypes to comment strings. For example:
 
     let g:no_comment_strings = {"vim": '"', "coffee": '#'}
+
+Some languages, such as HTML, require an opening and closing string for a comment. For these languages, map a dictionary containing `open` and `close` keys. Extending the previous example:
+
+    let g:no_comment_strings = {"vim": '"', "coffee": '#', "html": {"open": '<!--', "close": '-->'}}
 
 No Comment can be disabled by adding the following line to your .vimrc:
 
@@ -29,12 +33,13 @@ A web developer might start with something like this in his .vimrc:
       \ "vim": '"',
       \ "ruby": '#',
       \ "coffee": '#',
+      \ "html": {"open":'<!--', "close":'-->'},
       \ "scss": '//'
       \ }
 
 ## Plans
 
-At a minimum, :NoComment will allow for commenting multiple strings in visual mode, and will support languages requiring both an opening and closing string. A help file will be added.
+The :NoComment command will eventually work in visual mode for commenting out multiple lines, and a help file will be added.
 
 ## Installation
 
